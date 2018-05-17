@@ -5,8 +5,8 @@
     "front_camera":
     {
       "enabled"       : true,
-      "resolution"    : 1,
-      "fps"           : 10,
+      "resolution"    : 4,
+      "fps"           : 5,
       "recorder_fps"  : 5
     },
     "bottom_camera":
