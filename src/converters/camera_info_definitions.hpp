@@ -39,14 +39,14 @@ inline sensor_msgs::CameraInfo createCameraInfoTOP16VGA()
 
   cam_info_msg.width = 2560;
   cam_info_msg.height = 1920;
-  cam_info_msg.K = boost::array<double, 9>{{ 556.845054830986, 0, 309.366895338178, 0, 555.898679730161, 230.592233628776, 0, 0, 1 }};
+  cam_info_msg.K = boost::array<double, 9>{{ 2502.542141, 0, 1211.677174, 0, 2516.929988, 969.209338, 0, 0, 1 }};
 
   cam_info_msg.distortion_model = "plumb_bob";
-  cam_info_msg.D = boost::assign::list_of(-0.0545211535376379)(0.0691973423510287)(-0.00241094929163055)(-0.00112245009306511)(0).convert_to_container<std::vector<double> >();
+  cam_info_msg.D = boost::assign::list_of(0.137636)(-0.411511)(0.004927)(-0.019067)(0).convert_to_container<std::vector<double> >();
 
   cam_info_msg.R = boost::array<double, 9>{{ 1, 0, 0, 0, 1, 0, 0, 0, 1 }};
 
-  cam_info_msg.P = boost::array<double, 12>{{ 551.589721679688, 0, 308.271132841983, 0, 0, 550.291320800781, 229.20143668168, 0, 0, 0, 1, 0 }};
+  cam_info_msg.P = boost::array<double, 12>{{ 2506.987305, 0, 1168.860946, 0, 0, 2568.505127, 975.705997, 0, 0, 0, 1, 0 }};
 
   return cam_info_msg;
 }
