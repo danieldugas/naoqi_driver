@@ -1,17 +1,17 @@
 {
-  "_comment": "QQVGA = 0, QVGA = 1, VGA = 2",
+  "_comment": "QQVGA = 0, QVGA = 1, VGA = 2, Q4VGA = 3, Q16VGA = 4",
   "converters":
   {
     "front_camera":
     {
       "enabled"       : true,
       "resolution"    : 3,
-      "fps"           : 10,
+      "fps"           : 20,
       "recorder_fps"  : 5
     },
     "bottom_camera":
     {
-      "enabled"       : true,
+      "enabled"       : false,
       "resolution"    : 1,
       "fps"           : 10,
       "recorder_fps"  : 5
@@ -20,12 +20,12 @@
     {
       "enabled"       : true,
       "resolution"    : 1,
-      "fps"           : 10,
+      "fps"           : 20,
       "recorder_fps"  : 5
     },
     "ir_camera":
     {
-      "enabled"       : true,
+      "enabled"       : false,
       "resolution"    : 1,
       "fps"           : 10,
       "recorder_fps"  : 5
@@ -52,13 +52,13 @@
     },
     "imu_base":
     {
-      "enabled"       : true,
+      "enabled"       : false,
       "frequency"     : 10
     },
     "joint_states":
     {
       "enabled"       : true,
-      "frequency"     : 50
+      "frequency"     : 10
     },
     "laser":
     {
@@ -67,7 +67,7 @@
     },
     "sonar":
     {
-      "enabled"       : true,
+      "enabled"       : false,
       "frequency"     : 10
     },
     "audio":

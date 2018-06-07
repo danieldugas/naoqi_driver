@@ -192,7 +192,7 @@ void Driver::rosLoop()
         size_t conv_index = conv_queue_.top().conv_index_;
         converter::Converter& conv = converters_[conv_index];
         ros::Time schedule = conv_queue_.top().schedule_;
-
+//         std::cout << ros::Time::now() << " " << conv.name() << std::endl;
         // check the publishing condition
         // 1. publishing enabled
         // 2. has to be registered
@@ -238,7 +238,7 @@ void Driver::rosLoop()
         conv_queue_.pop();
         if ( conv.frequency() != 0 )
         {
-          conv_queue_.push(ScheduledConverter(schedule + ros::Duration(1.0f / conv.frequency()), conv_index));
+          conv_queue_.push(ScheduledConverter(std::max(schedule, ros::Time::now()) + ros::Duration(1.0f / conv.frequency()), conv_index));
         }
 
       }
