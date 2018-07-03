@@ -53,7 +53,7 @@ void MovetoSubscriber::callback( const geometry_msgs::PoseStampedConstPtr& pose_
     double yaw = helpers::transform::getYaw(pose_msg->pose);
 
     std::cout << "going to move x: " <<  pose_msg->pose.position.x << " y: " << pose_msg->pose.position.y << " z: " << pose_msg->pose.position.z << " yaw: " << yaw << std::endl;
-    p_motion_.async<void>("moveToward", pose_msg->pose.position.x, pose_msg->pose.position.y, yaw);
+    p_motion_.async<void>("moveTo", pose_msg->pose.position.x, pose_msg->pose.position.y, yaw);
   }
   else{
     geometry_msgs::PoseStamped pose_msg_bf;

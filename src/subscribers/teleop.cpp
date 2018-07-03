@@ -47,9 +47,18 @@ void TeleopSubscriber::cmd_vel_callback( const geometry_msgs::TwistConstPtr& twi
   const float& vel_x = twist_msg->linear.x;
   const float& vel_y = twist_msg->linear.y;
   const float& vel_th = twist_msg->angular.z;
+  const float& hacky_flag = twist_msg->angular.x;
 
-  std::cout << "going to move x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
-  p_motion_.async<void>("move", vel_x, vel_y, vel_th );
+  if ( hacky_flag == 1337. )
+  {
+    std::cout << "killing move." << std::endl;
+    p_motion_.async<void>("killMove");
+  }
+  else
+  {
+    std::cout << "going to move x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
+    p_motion_.async<void>("moveToward", vel_x, vel_y, vel_th );
+  }
 }
 
 void TeleopSubscriber::joint_angles_callback( const naoqi_bridge_msgs::JointAnglesWithSpeedConstPtr& js_msg )

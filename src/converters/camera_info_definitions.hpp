@@ -103,7 +103,7 @@ inline sensor_msgs::CameraInfo createCameraInfoTOPQVGA()
 
   cam_info_msg.width = 320;
   cam_info_msg.height = 240;
-  cam_info_msg.K = boost::array<double, 9>{{ 274.139508945831, 0, 161.184472810944, 0, 275.741846757374, 126.693773654172, 0, 0, 1 }};
+  cam_info_msg.K = boost::array<double, 9>{{ 274.139508945831, 0, 161.184472810944, 0, 275.741846757374, 131.693773654172, 0, 0, 1 }};
 
   cam_info_msg.distortion_model = "plumb_bob";
   cam_info_msg.D = boost::assign::list_of(-0.0870160932911717)(0.128210165050533)(0.003379500659424)(-0.00106205540818586)(0).convert_to_container<std::vector<double> >();
