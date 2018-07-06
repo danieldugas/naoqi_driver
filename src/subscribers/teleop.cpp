@@ -56,7 +56,7 @@ void TeleopSubscriber::cmd_vel_callback( const geometry_msgs::TwistConstPtr& twi
   }
   else
   {
-    std::cout << "going to move x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
+    std::cout << ros::Time::now() << ": going to move toward x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
     p_motion_.async<void>("moveToward", vel_x, vel_y, vel_th );
   }
 }

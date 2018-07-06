@@ -52,7 +52,7 @@
     },
     "imu_base":
     {
-      "enabled"       : false,
+      "enabled"       : true,
       "frequency"     : 10
     },
     "joint_states":
