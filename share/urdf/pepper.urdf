@@ -1461,4 +1461,30 @@
     <axis xyz="1.0 0 0"/>
     <limit effort="3.25" lower="0" upper="0" velocity="6.28319"/>
   </joint>
+
+  <!--added VI_SENSOR link and joint, for the two cameras and the imu0 -->
+  <link name="imu0"/>
+  <joint name="visensor_center" type="fixed">
+    <parent link="Head"/>
+    <child link="imu0"/>
+    <origin rpy="0 0 0" xyz="-0.25 0.039 0"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- end of added part regarding VI_SENSOR start of sick_tim-->
+  <link name="sick_laser_rear"/>
+  <joint name="SickLaser/rear" type="fixed">
+    <parent link="Tibia"/>
+    <child link="sick_laser_rear"/>
+    <origin rpy="0 0 3.14159" xyz="-0.245 0.0 -0.1"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="sick_laser_front"/>
+  <joint name="SickLaser/front" type="fixed">
+    <parent link="Tibia"/>
+    <child link="sick_laser_front"/>
+    <origin rpy="0 0 0" xyz="0.245 0.0 -0.1"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- end of added sick_tim laser sensors -->
+
 </robot>
