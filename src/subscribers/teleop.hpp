@@ -55,6 +55,9 @@ private:
   ros::Subscriber sub_cmd_vel_;
   ros::Subscriber sub_joint_angles_;
 
+  qi::AnyValue move_config_;
+  bool move_config_is_set_;
+
 
 
 }; // class Teleop

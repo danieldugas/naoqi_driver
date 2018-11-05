@@ -38,6 +38,18 @@ void TeleopSubscriber::reset( ros::NodeHandle& nh )
   sub_cmd_vel_ = nh.subscribe( cmd_vel_topic_, 10, &TeleopSubscriber::cmd_vel_callback, this );
   sub_joint_angles_ = nh.subscribe( joint_angles_topic_, 10, &TeleopSubscriber::joint_angles_callback, this );
 
+
+  try {
+       move_config_ = p_motion_.call<qi::AnyValue>(
+                  "getMoveConfig", "Max");
+       move_config_is_set_ = true;
+  } catch (const std::exception &e) {
+      std::cerr << "Exception caught in getMoveConfig: "
+                << e.what()
+                << std::endl;
+      move_config_is_set_ = false;
+  }
+
   is_initialized_ = true;
 }
 
@@ -57,7 +69,11 @@ void TeleopSubscriber::cmd_vel_callback( const geometry_msgs::TwistConstPtr& twi
   else
   {
     std::cout << ros::Time::now() << ": going to move toward x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
-    p_motion_.async<void>("moveToward", vel_x, vel_y, vel_th );
+    if ( move_config_is_set_ ) {
+      p_motion_.async<void>("moveToward", vel_x, vel_y, vel_th, move_config_);
+    } else {
+      p_motion_.async<void>("moveToward", vel_x, vel_y, vel_th);
+    }
   }
 }
 
