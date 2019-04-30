@@ -30,7 +30,8 @@ TeleopSubscriber::TeleopSubscriber( const std::string& name, const std::string& 
   cmd_vel_topic_(cmd_vel_topic),
   joint_angles_topic_(joint_angles_topic),
   BaseSubscriber( name, cmd_vel_topic, session ),
-  p_motion_( session->service("ALMotion") )
+  p_motion_( session->service("ALMotion") ),
+  p_motion_controller_( session->service("MotionController") )
 {}
 
 void TeleopSubscriber::reset( ros::NodeHandle& nh )
@@ -68,11 +69,13 @@ void TeleopSubscriber::cmd_vel_callback( const geometry_msgs::TwistConstPtr& twi
   }
   else
   {
-    std::cout << ros::Time::now() << ": going to move toward x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
+    std::cout << ros::Time::now() << ": trust that im going to move toward x: " << vel_x << " y: " << vel_y << " th: " << vel_th << std::endl;
     if ( move_config_is_set_ ) {
-      p_motion_.async<void>("move", vel_x, vel_y, vel_th, move_config_);
+//       p_motion_.async<void>("move", vel_x, vel_y, vel_th, move_config_);
+      p_motion_controller_.async<void>("move", vel_x, vel_y, vel_th );
     } else {
-      p_motion_.async<void>("move", vel_x, vel_y, vel_th);
+//       p_motion_.async<void>("move", vel_x, vel_y, vel_th);
+      p_motion_controller_.async<void>("move", vel_x, vel_y, vel_th );
     }
   }
 }
