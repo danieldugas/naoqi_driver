@@ -1487,4 +1487,14 @@
   </joint>
   <!-- end of added sick_tim laser sensors -->
 
+<!-- start of realsense part -->
+<link name="camera_link"/>
+<joint name="realsense" type="fixed">
+  <parent link="Head"/>
+  <child link="camera_link"/>
+  <origin rpy="0 0 0" xyz="0.0715 0.0175 0.195"/>
+  <axis xyz="0 0 0"/>
+</joint>
+<!-- end of realsense part -->
+
 </robot>
