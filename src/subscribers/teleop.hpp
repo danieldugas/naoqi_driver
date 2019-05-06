@@ -52,6 +52,7 @@ private:
   std::string joint_angles_topic_;
 
   qi::AnyObject p_motion_;
+  qi::AnyObject p_motion_controller_;
   ros::Subscriber sub_cmd_vel_;
   ros::Subscriber sub_joint_angles_;
 
