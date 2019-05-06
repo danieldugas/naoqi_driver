@@ -32,7 +32,12 @@ TeleopSubscriber::TeleopSubscriber( const std::string& name, const std::string& 
   BaseSubscriber( name, cmd_vel_topic, session ),
   p_motion_( session->service("ALMotion") ),
   p_motion_controller_( session->service("MotionController") )
-{}
+{
+  // Init max linear and angular velocity of motion_controller.
+  // Max 1.0 ( = 1 rad/s and 0.55 m/s)
+  p_motion_controller_.async<void>("set_angular_velocity", 1.0);
+  p_motion_controller_.async<void>("set_linear_velocity", 1.0);
+}
 
 void TeleopSubscriber::reset( ros::NodeHandle& nh )
 {
