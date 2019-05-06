@@ -151,6 +151,7 @@ void Driver::init()
 {
   ros::Time::init(); // can call this many times
   loadBootConfig();
+  bootDisableSettings();
   registerDefaultConverter();
   registerDefaultSubscriber();
   registerDefaultServices();
@@ -165,6 +166,31 @@ void Driver::loadBootConfig()
   {
     boost::property_tree::read_json( file_path, boot_config_ );
   }
+}
+
+void Driver::bootDisableSettings()
+{
+  // Init services
+  qi::AnyObject p_motion = sessionPtr_->service("ALMotion");
+  qi::AnyObject p_autonomous_life = sessionPtr_->service("ALAutonomousLife");
+  qi::AnyObject p_basic_awareness = sessionPtr_->service("ALBasicAwareness");
+
+  // Disable safety
+  p_motion.async<void>("setPushRecoveryEnabled", false);
+  p_motion.async<void>("setExternalCollisionProtectionEnabled", "All", false);
+  p_motion.async<void>("setFallManagerEnabled", false);
+  p_motion.async<bool>("setCollisionProtectionEnabled", "Arms", false);
+  p_motion.async<void>("setDiagnosisEffectEnabled", false);
+  p_motion.async<void>("wbEnable", false);
+  p_motion.async<void>("wbEnableBalanceConstraint", false, "All");
+
+  //Disable autonomy
+  p_autonomous_life.async<void>("setAutonomousAbilityEnabled", "All", false);
+  p_autonomous_life.async<void>("setSafeguardEnabled", "RobotPushed", false);
+  p_autonomous_life.async<void>("setSafeguardEnabled", "RobotMoved", false);
+  p_basic_awareness.async<void>("setEnabled", false);
+  p_motion.async<void>("setBreathEnabled", "Body", false);
+  p_motion.async<void>("setSmartStiffnessEnabled", false);
 }
 
 void Driver::stopService() {

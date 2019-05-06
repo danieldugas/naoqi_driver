@@ -251,6 +251,7 @@ private:
   boost::property_tree::ptree boot_config_;
   void loadBootConfig();
 
+  void bootDisableSettings();
   void registerDefaultConverter();
   void registerDefaultSubscriber();
   void registerDefaultServices();
