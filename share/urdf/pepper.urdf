@@ -1475,14 +1475,14 @@
   <joint name="SickLaser/rear" type="fixed">
     <parent link="Tibia"/>
     <child link="sick_laser_rear"/>
-    <origin rpy="0 0 3.14159" xyz="-0.245 0.0 -0.1"/>
+    <origin rpy="0 0 3.14459" xyz="-0.244 0.0 -0.1"/>
     <axis xyz="0 0 0"/>
   </joint>
   <link name="sick_laser_front"/>
   <joint name="SickLaser/front" type="fixed">
     <parent link="Tibia"/>
     <child link="sick_laser_front"/>
-    <origin rpy="0 0 0" xyz="0.245 0.0 -0.1"/>
+    <origin rpy="0 0 -0.005" xyz="0.252 0.0 -0.1"/>
     <axis xyz="0 0 0"/>
   </joint>
   <!-- end of added sick_tim laser sensors -->
@@ -1492,7 +1492,10 @@
 <joint name="realsense" type="fixed">
   <parent link="Head"/>
   <child link="camera_link"/>
-  <origin rpy="0 0 0" xyz="0.0715 0.0175 0.195"/>
+  <!-- Somewhere in the tf tree is an offset, which is corrected here by
+       adding 0.07 rad to the pitch angle -->
+  <!-- <origin rpy="0 0 0" xyz="0.0715 0.0175 0.195"/> -->
+  <origin rpy="0 0.07 0" xyz="0.0715 0.0175 0.195"/>
   <axis xyz="0 0 0"/>
 </joint>
 <!-- end of realsense part -->
