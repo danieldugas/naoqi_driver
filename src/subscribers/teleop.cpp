@@ -37,6 +37,7 @@ TeleopSubscriber::TeleopSubscriber( const std::string& name, const std::string& 
   // Max 1.0 ( = 1 rad/s and 0.55 m/s)
   p_motion_controller_.async<void>("set_angular_velocity", 1.0);
   p_motion_controller_.async<void>("set_linear_velocity", 1.0);
+  p_motion_controller_.async<void>("set_acceleration", 1.0);
 }
 
 void TeleopSubscriber::reset( ros::NodeHandle& nh )
