@@ -12,6 +12,7 @@
   <license>BSD</license>
 
   <build_depend>boost</build_depend>
+  <build_depend>opencv2</build_depend>
   <build_depend>cv_bridge</build_depend>
   <build_depend>diagnostic_msgs</build_depend>
   <build_depend>diagnostic_updater</build_depend>

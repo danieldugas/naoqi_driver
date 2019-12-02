@@ -44,5 +44,24 @@ void SpeechSubscriber::speech_callback( const std_msgs::StringConstPtr& string_m
   p_tts_.async<void>("say", string_msg->data);
 }
 
+GestureSubscriber::GestureSubscriber( const std::string& name, const std::string& gesture_topic, const qi::SessionPtr& session ):
+  gesture_topic_(gesture_topic),
+  BaseSubscriber( name, gesture_topic, session ),
+  p_ap_( session->service("ALAnimationPlayer") )
+{}
+
+void GestureSubscriber::reset( ros::NodeHandle& nh )
+{
+  sub_gesture_ = nh.subscribe( gesture_topic_, 10, &GestureSubscriber::gesture_callback, this );
+
+  is_initialized_ = true;
+}
+
+void GestureSubscriber::gesture_callback( const std_msgs::StringConstPtr& string_msg )
+{
+  std::cout << ros::Time::now() << ": Executing gesture: " <<  string_msg->data << std::endl;
+  p_ap_.async<void>("run", string_msg->data);
+}
+
 } //publisher
 } // naoqi

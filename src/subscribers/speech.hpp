@@ -53,7 +53,22 @@ private:
 
 
 
-}; // class Speech
+}; // class SpeechSubscriber
+
+class GestureSubscriber: public BaseSubscriber<GestureSubscriber>
+{
+public:
+  GestureSubscriber( const std::string& name, const std::string& gesture_topic, const qi::SessionPtr& session );
+  ~GestureSubscriber(){}
+
+  void reset( ros::NodeHandle& nh );
+  void gesture_callback( const std_msgs::StringConstPtr& gesture_msg );
+
+private:
+  std::string gesture_topic_;
+  qi::AnyObject p_ap_;
+  ros::Subscriber sub_gesture_;
+}; // class GestureSubscriber
 
 } // subscriber
 }// naoqi
