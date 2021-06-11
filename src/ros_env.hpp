@@ -59,6 +59,7 @@ static std::string getROSIP(std::string network_interface)
 
   static const std::string ip = map_ip[network_interface][0];
   return ip;
+
 }
 
 static std::string prefix = "";
@@ -86,8 +87,9 @@ static void setMasterURI( const std::string& uri, const std::string& network_int
 
   std::string my_master = "__master="+uri;
   std::map< std::string, std::string > remap;
-  remap["__master"] = uri;
-  remap["__ip"] = ::naoqi::ros_env::getROSIP(network_interface);
+  // Remapping things is silly. Use the ROS_MASTER_URI and ROS_IP env variables instead.
+//   remap["__master"] = uri;
+//   remap["__ip"] = ::naoqi::ros_env::getROSIP(network_interface);
   // init ros without a sigint-handler in order to shutdown correctly by naoqi
   const char* ns_env = std::getenv("ROS_NAMESPACE");
   ros::init( remap, (::naoqi::ros_env::getPrefix()), ros::init_options::NoSigintHandler );
